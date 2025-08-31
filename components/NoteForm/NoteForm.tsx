@@ -38,58 +38,60 @@ export default function NoteForm({ onClose }: NoteFormProps) {
             }
         >
             <Form className={css.form}>
-                <div className={css.formGroup}>
-                    <label htmlFor="title">Title</label>
-                    <Field type="text" name="title" className={css.input} />
-                    <ErrorMessage
-                        name="title"
-                        component="span"
-                        className={css.error}
-                    />
-                </div>
+                <div className={css.container}>
+                    <div className={css.formGroup}>
+                        <label htmlFor="title">Title</label>
+                        <Field type="text" name="title" className={css.input} />
+                        <ErrorMessage
+                            name="title"
+                            component="span"
+                            className={css.error}
+                        />
+                    </div>
 
-                <div className={css.formGroup}>
-                    <label htmlFor="content">Content</label>
-                    <Field
-                        as="textarea"
-                        name="content"
-                        rows={8}
-                        className={css.textarea}
-                    />
-                    <ErrorMessage
-                        name="content"
-                        component="span"
-                        className={css.error}
-                    />
-                </div>
+                    <div className={css.formGroup}>
+                        <label htmlFor="content">Content</label>
+                        <Field
+                            as="textarea"
+                            name="content"
+                            rows={8}
+                            className={css.textarea}
+                        />
+                        <ErrorMessage
+                            name="content"
+                            component="span"
+                            className={css.error}
+                        />
+                    </div>
 
-                <div className={css.formGroup}>
-                    <label htmlFor="tag">Tag</label>
-                    <Field as="select" name="tag" className={css.select}>
-                        <option value="Todo">Todo</option>
-                        <option value="Work">Work</option>
-                        <option value="Personal">Personal</option>
-                        <option value="Meeting">Meeting</option>
-                        <option value="Shopping">Shopping</option>
-                    </Field>
-                    <ErrorMessage
-                        name="tag"
-                        component="span"
-                        className={css.error}
-                    />
-                </div>
+                    <div className={css.formGroup}>
+                        <label htmlFor="tag">Tag</label>
+                        <Field as="select" name="tag" className={css.select}>
+                            <option value="Todo">Todo</option>
+                            <option value="Work">Work</option>
+                            <option value="Personal">Personal</option>
+                            <option value="Meeting">Meeting</option>
+                            <option value="Shopping">Shopping</option>
+                        </Field>
+                        <ErrorMessage
+                            name="tag"
+                            component="span"
+                            className={css.error}
+                        />
+                    </div>
 
-                <div className={css.actions}>
-                    <button
-                        type="button"
-                        className={css.cancelButton}
-                        onClick={onClose}
-                    >
-                        Cancel
-                    </button>
-                    <button type="submit" className={css.submitButton}>
-                        Create note
-                    </button>
+                    <div className={css.actions}>
+                        <button
+                            type="button"
+                            className={css.cancelButton}
+                            onClick={onClose}
+                        >
+                            Cancel
+                        </button>
+                        <button type="submit" className={css.submitButton}>
+                            Create note
+                        </button>
+                    </div>
                 </div>
             </Form>
         </Formik>

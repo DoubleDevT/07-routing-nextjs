@@ -13,11 +13,12 @@ import Loader from "@/components/Loader/Loader";
 import ErrorMessage from "@/components/ErrorMessage/ErrorMessage";
 import styles from "./Notes.module.css";
 
-export default function NotesClient({
-    initialData,
-}: {
+interface NotesClientProps {
     initialData: Awaited<ReturnType<typeof fetchNotes>>;
-}) {
+    tag?: string;
+}
+
+export default function NotesClient({ initialData, tag }: NotesClientProps) {
     const [page, setPage] = useState(1);
     const [search, setSearch] = useState("");
     const [debouncedSearch, setDebouncedSearch] = useState("");
@@ -34,15 +35,17 @@ export default function NotesClient({
     };
 
     const { data, isLoading, isError, isSuccess } = useQuery({
-        queryKey: ["notes", page, debouncedSearch],
+        queryKey: ["notes", page, debouncedSearch, tag],
         queryFn: () =>
             fetchNotes({
                 page,
                 perPage: 12,
                 search: debouncedSearch,
+                tag,
             }),
         placeholderData: keepPreviousData,
-        initialData: page === 1 && !debouncedSearch ? initialData : undefined,
+        initialData:
+            page === 1 && !debouncedSearch && !tag ? initialData : undefined,
     });
 
     return (

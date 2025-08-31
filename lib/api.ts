@@ -10,6 +10,7 @@ export interface FetchNotesParams {
     page?: number;
     perPage?: number;
     search?: string;
+    tag?: string;
 }
 
 export interface RawNotesResponse {
@@ -28,12 +29,14 @@ export const fetchNotes = async ({
     page = 1,
     perPage = 12,
     search,
+    tag,
 }: FetchNotesParams): Promise<FetchNotesResponse> => {
     const response = await axios.get<RawNotesResponse>("/notes", {
         params: {
             page,
             perPage,
             ...(search && { search }),
+            ...(tag && tag !== "All" && { tag }),
         },
     });
 
